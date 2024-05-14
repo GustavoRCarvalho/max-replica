@@ -1,13 +1,24 @@
 body {
+  --bg-color: linear-gradient(#02000a, #050935) no-repeat;
+  --margin-left: 32px;
+
+  background: var(--bg-color);
+  color: #fff;
+
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: "streetLCG2", BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+@font-face {
+  font-family: "streetLCG2";
+  src: url(./assets/fonts/StreetLCG2-Medium.d02aab86eb5290da7f0dce9e59ad6f41.sha.woff2);
+}
+
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
