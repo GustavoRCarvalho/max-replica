@@ -5,24 +5,26 @@ import useWindowDimensions from "./windowDimentions"
 import { useRef, useState } from "react"
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs"
 import { RxDotsVertical } from "react-icons/rx"
+import { Tooltip } from "react-tooltip"
 
 export const Catalog = ({ title = "", content = [] }) => {
   const [isHover, setIsHover] = useState("0")
+  const [isOpenOptions, setIsOpenOptions] = useState(false)
   const navigationPrevRef = useRef(null)
   const navigationNextRef = useRef(null)
 
   const { width } = useWindowDimensions()
   function slidesPerView(width) {
     if (width < 1100) return 4
-    else if (width < 1800) return 6
-    else return 8
+    if (width < 1800) return 6
+    return 8
   }
 
   function spaceBetween(width) {
     if (width < 600) return 8
-    else if (width < 800) return 12
-    else if (width < 1100) return 16
-    else return 20
+    if (width < 800) return 12
+    if (width < 1100) return 16
+    return 20
   }
 
   return (
@@ -45,9 +47,31 @@ export const Catalog = ({ title = "", content = [] }) => {
       >
         {content.map(({ src }) => {
           return (
-            <Card>
-              <CardImage src={src} alt={"image"} />
-              <DotsVerticalIcon />
+            <Card
+              onMouseLeave={(e) => {
+                if (
+                  e.relatedTarget.id === "card-image" ||
+                  e.relatedTarget.id === "tooltip" ||
+                  e.relatedTarget.id === "tooltip-button"
+                ) {
+                  return
+                }
+                setIsOpenOptions(false)
+              }}
+            >
+              <CardImage src={src} alt={"image"} id="card-image" />
+              <DotsVerticalIcon
+                data-tooltip-id="tooltip"
+                onClick={() => setIsOpenOptions((state) => !state)}
+              />
+              <DotsToolkit id="tooltip" isOpen={isOpenOptions} noArrow>
+                <DotsToolkitButton id="tooltip-button">
+                  Adicione à Minha lista
+                </DotsToolkitButton>
+                <DotsToolkitButton id="tooltip-button">
+                  Mais informações
+                </DotsToolkitButton>
+              </DotsToolkit>
             </Card>
           )
         })}
@@ -153,14 +177,50 @@ const LeftIcon = styled(BsChevronLeft)`
   color: #ffffffdd;
 `
 
+const DotsToolkit = styled(Tooltip)`
+  background-color: #191919 !important;
+  border-radius: 0.5em !important;
+  padding: 0 !important;
+
+  display: flex;
+  flex-direction: column;
+  transition: 0s !important;
+  pointer-events: all !important;
+
+  box-shadow: rgb(0 0 0 / 0.35) 0px 2px 15px -8px;
+`
+
+const DotsToolkitButton = styled.button`
+  background-color: transparent;
+  color: #fff;
+
+  border: none;
+  width: 100%;
+  text-align: start;
+
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+
+  padding: 0.6em;
+  margin-block: 0.4em;
+
+  &:hover {
+    background-color: #dddddd0f;
+  }
+
+  cursor: pointer;
+`
+
 const DotsVerticalIcon = styled(RxDotsVertical)`
   position: absolute;
   top: 12px;
-  right: 0;
+  right: -0.2em;
 
   height: 1.25em;
   width: 1.25em;
   stroke-width: 0;
+  padding-inline: 0.2em;
 
   color: #ffffffdd;
   cursor: pointer;

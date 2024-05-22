@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { Catalog } from "../components/catalog"
+import { Catalog } from "../components/catalogSwiper"
 import duna from "../assets/image/duna.png"
 import godzilla2 from "../assets/image/godzilla2.png"
 import got from "../assets/image/got.png"
@@ -15,19 +15,19 @@ import theFreshPrince from "../assets/image/the-fresh-prince.png"
 import wonka from "../assets/image/wonka.png"
 
 const contentList = [
-  { src: duna },
-  { src: godzilla2 },
-  { src: got },
-  { src: gumball },
-  { src: interestelar },
-  { src: joker },
-  { src: matrix },
-  { src: rickAndMorty },
-  { src: suicideSquad },
-  { src: theBigBang },
-  { src: theConjuring3 },
-  { src: theFreshPrince },
-  { src: wonka },
+  { title: "duna", src: duna },
+  { title: "godzilla2", src: godzilla2 },
+  { title: "got", src: got },
+  { title: "gumball", src: gumball },
+  { title: "interestelar", src: interestelar },
+  { title: "joker", src: joker },
+  { title: "matrix", src: matrix },
+  { title: "rickAndMorty", src: rickAndMorty },
+  { title: "suicideSquad", src: suicideSquad },
+  { title: "theBigBang", src: theBigBang },
+  { title: "theConjuring3", src: theConjuring3 },
+  { title: "theFreshPrince", src: theFreshPrince },
+  { title: "wonka", src: wonka },
 ]
 
 export const Home = () => {
