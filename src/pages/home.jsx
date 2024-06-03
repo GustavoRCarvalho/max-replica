@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { Catalog } from "../components/catalogSwiper"
+import { Catalog } from "../components/catalog/catalogSwiper"
 import duna from "../assets/image/duna.png"
 import godzilla2 from "../assets/image/godzilla2.png"
 import got from "../assets/image/got.png"

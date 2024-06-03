@@ -1,11 +1,10 @@
 import styled from "styled-components"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation } from "swiper/modules"
-import useWindowDimensions from "./windowDimentions"
+import useWindowDimensions from "../windowDimentions"
 import { useRef, useState } from "react"
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs"
-import { RxDotsVertical } from "react-icons/rx"
-import { Tooltip } from "react-tooltip"
+import { OptionsToolkit } from "./OptionsToolkit"
 
 export const Catalog = ({ title = "", content = [] }) => {
   const [isHover, setIsHover] = useState("0")
@@ -60,18 +59,10 @@ export const Catalog = ({ title = "", content = [] }) => {
               }}
             >
               <CardImage src={src} alt={"image"} id="card-image" />
-              <DotsVerticalIcon
-                data-tooltip-id="tooltip"
-                onClick={() => setIsOpenOptions((state) => !state)}
+              <OptionsToolkit
+                isOpenOptions={isOpenOptions}
+                setIsOpenOptions={setIsOpenOptions}
               />
-              <DotsToolkit id="tooltip" isOpen={isOpenOptions} noArrow>
-                <DotsToolkitButton id="tooltip-button">
-                  Adicione à Minha lista
-                </DotsToolkitButton>
-                <DotsToolkitButton id="tooltip-button">
-                  Mais informações
-                </DotsToolkitButton>
-              </DotsToolkit>
             </Card>
           )
         })}
@@ -175,62 +166,4 @@ const LeftIcon = styled(BsChevronLeft)`
   stroke-width: 0.4;
 
   color: #ffffffdd;
-`
-
-const DotsToolkit = styled(Tooltip)`
-  background-color: #191919 !important;
-  border-radius: 0.5em !important;
-  padding: 0 !important;
-
-  display: flex;
-  flex-direction: column;
-  transition: 0s !important;
-  pointer-events: all !important;
-
-  box-shadow: rgb(0 0 0 / 0.35) 0px 2px 15px -8px;
-`
-
-const DotsToolkitButton = styled.button`
-  background-color: transparent;
-  color: #fff;
-
-  border: none;
-  width: 100%;
-  text-align: start;
-
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 21px;
-
-  padding: 0.6em;
-  margin-block: 0.4em;
-
-  &:hover {
-    background-color: #dddddd0f;
-  }
-
-  cursor: pointer;
-`
-
-const DotsVerticalIcon = styled(RxDotsVertical)`
-  position: absolute;
-  top: 12px;
-  right: -0.2em;
-
-  height: 1.25em;
-  width: 1.25em;
-  stroke-width: 0;
-  padding-inline: 0.2em;
-
-  color: #ffffffdd;
-  cursor: pointer;
-
-  &:hover {
-    stroke-width: 0.65;
-    color: #ffffff;
-
-    box-shadow: 5px -5px 40px 0.4px black,
-      inset -1.25em -1.25em 0px 1px #00000022;
-    filter: drop-shadow(10px -10px 5px #000);
-  }
 `
